@@ -1,0 +1,42 @@
+From 76a24b0f106f18b40f17295eb9570aed2002cca4 Mon Sep 17 00:00:00 2001
+From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+Date: Tue, 28 May 2024 11:59:39 +0200
+Subject: [PATCH] toradex: tdx-cfg-block: add aquila am69 sku 0088 pid4
+
+Add new PID4 0088 Aquila AM69 Octa 32GB WB IT to config block handling.
+
+Upstream-Status: Backport [76a24b0f106f18b40f17295eb9570aed2002cca4]
+
+Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+---
+ board/toradex/common/tdx-cfg-block.c | 1 +
+ board/toradex/common/tdx-cfg-block.h | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/board/toradex/common/tdx-cfg-block.c b/board/toradex/common/tdx-cfg-block.c
+index 2225cefec167..16e897d14634 100644
+--- a/board/toradex/common/tdx-cfg-block.c
++++ b/board/toradex/common/tdx-cfg-block.c
+@@ -158,6 +158,7 @@ const struct toradex_som toradex_modules[] = {
+ 	[85] = { "Apalis iMX6Q 2GB IT",                  TARGET_IS_ENABLED(APALIS_IMX6)     },
+ 	[86] = { "Verdin iMX8M Mini DualLite 2GB IT",    TARGET_IS_ENABLED(VERDIN_IMX8MM)   },
+ 	[87] = { "Verdin iMX8M Mini Quad 2GB IT",        TARGET_IS_ENABLED(VERDIN_IMX8MM)   },
++	[88] = { "Aquila AM69 Octa 32GB WB IT",          TARGET_IS_ENABLED(AQUILA_AM69_A72) },
+ };
+ 
+ struct pid4list {
+diff --git a/board/toradex/common/tdx-cfg-block.h b/board/toradex/common/tdx-cfg-block.h
+index 183ee0f2dc99..277f8bc6bb4c 100644
+--- a/board/toradex/common/tdx-cfg-block.h
++++ b/board/toradex/common/tdx-cfg-block.h
+@@ -113,6 +113,7 @@ enum {
+ 	APALIS_IMX6Q_IT_NOWINCE, /* 85 */
+ 	VERDIN_IMX8MMDL_2G_IT,
+ 	VERDIN_IMX8MMQ_2G_IT_NO_CAN,
++	AQUILA_AM69O_32G_WIFI_BT_IT,
+ };
+ 
+ enum {
+-- 
+2.34.1
+

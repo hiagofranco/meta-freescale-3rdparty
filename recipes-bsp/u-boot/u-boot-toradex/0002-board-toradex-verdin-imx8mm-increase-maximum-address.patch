@@ -1,0 +1,50 @@
+From 2884e5df697b49c98b8766b5f1964d6573eadfe5 Mon Sep 17 00:00:00 2001
+From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+Date: Tue, 28 May 2024 11:59:38 +0200
+Subject: [PATCH] board: toradex: verdin-imx8mm: increase maximum addressable
+ ram to 4GB
+
+Add support for SKUs with higher memory sizes.
+Actual memory size is auto-detected.
+
+Upstream-Status: Backport [2884e5df697b49c98b8766b5f1964d6573eadfe5]
+
+Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+---
+ board/toradex/verdin-imx8mm/verdin-imx8mm.c | 2 +-
+ include/configs/verdin-imx8mm.h             | 6 ++++--
+ 2 files changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/board/toradex/verdin-imx8mm/verdin-imx8mm.c b/board/toradex/verdin-imx8mm/verdin-imx8mm.c
+index 020ee6774807..3659316e23b6 100644
+--- a/board/toradex/verdin-imx8mm/verdin-imx8mm.c
++++ b/board/toradex/verdin-imx8mm/verdin-imx8mm.c
+@@ -117,7 +117,7 @@ int board_phys_sdram_size(phys_size_t *size)
+ 	if (!size)
+ 		return -EINVAL;
+ 
+-	*size = get_ram_size((void *)PHYS_SDRAM, PHYS_SDRAM_SIZE);
++	*size = get_ram_size((void *)PHYS_SDRAM, PHYS_SDRAM_SIZE + PHYS_SDRAM_2_SIZE);
+ 
+ 	return 0;
+ }
+diff --git a/include/configs/verdin-imx8mm.h b/include/configs/verdin-imx8mm.h
+index 34238d3b505c..12d2b6823058 100644
+--- a/include/configs/verdin-imx8mm.h
++++ b/include/configs/verdin-imx8mm.h
+@@ -58,8 +58,10 @@
+ #define CFG_SYS_SDRAM_BASE           0x40000000
+ 
+ /* SDRAM configuration */
+-#define PHYS_SDRAM                      0x40000000
+-#define PHYS_SDRAM_SIZE			SZ_2G /* 2GB DDR */
++#define PHYS_SDRAM                   0x40000000
++#define PHYS_SDRAM_SIZE              (long)(SZ_2G + SZ_1G)
++#define PHYS_SDRAM_2                 0x100000000
++#define PHYS_SDRAM_2_SIZE            (long)(SZ_1G)
+ 
+ /* USB Configs */
+ #define CFG_MXC_USB_PORTSC	(PORT_PTS_UTMI | PORT_PTS_PTW)
+-- 
+2.34.1
+

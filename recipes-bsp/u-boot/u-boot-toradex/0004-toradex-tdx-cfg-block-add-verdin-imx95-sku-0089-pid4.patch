@@ -1,0 +1,42 @@
+From ce53f46f33b43f550e47ca50d7827f5b7b6d2ca5 Mon Sep 17 00:00:00 2001
+From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+Date: Tue, 28 May 2024 11:59:40 +0200
+Subject: [PATCH] toradex: tdx-cfg-block: add verdin imx95 sku 0089 pid4
+
+Add new PID4 0089 Verdin iMX95 Hexa 16GB WB IT to config block handling.
+
+Upstream-Status: Backport [ce53f46f33b43f550e47ca50d7827f5b7b6d2ca5]
+
+Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+---
+ board/toradex/common/tdx-cfg-block.c | 1 +
+ board/toradex/common/tdx-cfg-block.h | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/board/toradex/common/tdx-cfg-block.c b/board/toradex/common/tdx-cfg-block.c
+index 16e897d14634..941653a4e382 100644
+--- a/board/toradex/common/tdx-cfg-block.c
++++ b/board/toradex/common/tdx-cfg-block.c
+@@ -159,6 +159,7 @@ const struct toradex_som toradex_modules[] = {
+ 	[86] = { "Verdin iMX8M Mini DualLite 2GB IT",    TARGET_IS_ENABLED(VERDIN_IMX8MM)   },
+ 	[87] = { "Verdin iMX8M Mini Quad 2GB IT",        TARGET_IS_ENABLED(VERDIN_IMX8MM)   },
+ 	[88] = { "Aquila AM69 Octa 32GB WB IT",          TARGET_IS_ENABLED(AQUILA_AM69_A72) },
++	[89] = { "Verdin iMX95 Hexa 16GB WB IT",         TARGET_IS_ENABLED(VERDIN_IMX95)    },
+ };
+ 
+ struct pid4list {
+diff --git a/board/toradex/common/tdx-cfg-block.h b/board/toradex/common/tdx-cfg-block.h
+index 277f8bc6bb4c..122a7aceabd6 100644
+--- a/board/toradex/common/tdx-cfg-block.h
++++ b/board/toradex/common/tdx-cfg-block.h
+@@ -114,6 +114,7 @@ enum {
+ 	VERDIN_IMX8MMDL_2G_IT,
+ 	VERDIN_IMX8MMQ_2G_IT_NO_CAN,
+ 	AQUILA_AM69O_32G_WIFI_BT_IT,
++	VERDIN_IMX95H_16G_WIFI_BT_IT,
+ };
+ 
+ enum {
+-- 
+2.34.1
+

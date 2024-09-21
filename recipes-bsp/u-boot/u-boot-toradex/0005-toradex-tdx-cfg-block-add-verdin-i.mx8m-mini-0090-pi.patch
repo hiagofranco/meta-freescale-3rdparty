@@ -1,0 +1,58 @@
+From a4e37613bd06e0496e0ee2d162573702d22cf69b Mon Sep 17 00:00:00 2001
+From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+Date: Tue, 28 May 2024 11:59:41 +0200
+Subject: [PATCH] toradex: tdx-cfg-block: add verdin i.mx8m mini 0090 pid4
+
+Add new PID4 0090 Verdin iMX8M Mini Quad 4GB WB ET to support
+the new hardware variant.
+
+Upstream-Status: Backport [a4e37613bd06e0496e0ee2d162573702d22cf69b]
+
+Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+---
+ board/toradex/common/tdx-cfg-block.c        | 1 +
+ board/toradex/common/tdx-cfg-block.h        | 1 +
+ board/toradex/verdin-imx8mm/verdin-imx8mm.c | 3 ++-
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/board/toradex/common/tdx-cfg-block.c b/board/toradex/common/tdx-cfg-block.c
+index 941653a4e382..a6e3c6afae80 100644
+--- a/board/toradex/common/tdx-cfg-block.c
++++ b/board/toradex/common/tdx-cfg-block.c
+@@ -160,6 +160,7 @@ const struct toradex_som toradex_modules[] = {
+ 	[87] = { "Verdin iMX8M Mini Quad 2GB IT",        TARGET_IS_ENABLED(VERDIN_IMX8MM)   },
+ 	[88] = { "Aquila AM69 Octa 32GB WB IT",          TARGET_IS_ENABLED(AQUILA_AM69_A72) },
+ 	[89] = { "Verdin iMX95 Hexa 16GB WB IT",         TARGET_IS_ENABLED(VERDIN_IMX95)    },
++	[90] = { "Verdin iMX8M Mini Quad 4GB WB ET",     TARGET_IS_ENABLED(VERDIN_IMX8MM)   },
+ };
+ 
+ struct pid4list {
+diff --git a/board/toradex/common/tdx-cfg-block.h b/board/toradex/common/tdx-cfg-block.h
+index 122a7aceabd6..0d6dd1c3a721 100644
+--- a/board/toradex/common/tdx-cfg-block.h
++++ b/board/toradex/common/tdx-cfg-block.h
+@@ -115,6 +115,7 @@ enum {
+ 	VERDIN_IMX8MMQ_2G_IT_NO_CAN,
+ 	AQUILA_AM69O_32G_WIFI_BT_IT,
+ 	VERDIN_IMX95H_16G_WIFI_BT_IT,
++	VERDIN_IMX8MMQ_4G_WIFI_BT_ET, /* 90 */
+ };
+ 
+ enum {
+diff --git a/board/toradex/verdin-imx8mm/verdin-imx8mm.c b/board/toradex/verdin-imx8mm/verdin-imx8mm.c
+index 3659316e23b6..4230f417d191 100644
+--- a/board/toradex/verdin-imx8mm/verdin-imx8mm.c
++++ b/board/toradex/verdin-imx8mm/verdin-imx8mm.c
+@@ -84,7 +84,8 @@ static void select_dt_from_module_version(void)
+ 		 */
+ 		is_wifi = (tdx_hw_tag.prodid == VERDIN_IMX8MMQ_WIFI_BT_IT) ||
+ 			  (tdx_hw_tag.prodid == VERDIN_IMX8MMDL_WIFI_BT_IT) ||
+-			  (tdx_hw_tag.prodid == VERDIN_IMX8MMQ_WIFI_BT_IT_NO_CAN);
++			  (tdx_hw_tag.prodid == VERDIN_IMX8MMQ_WIFI_BT_IT_NO_CAN) ||
++			  (tdx_hw_tag.prodid == VERDIN_IMX8MMQ_4G_WIFI_BT_ET);
+ 	}
+ 
+ 	switch (get_pcb_revision()) {
+-- 
+2.34.1
+
